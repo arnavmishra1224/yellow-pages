@@ -1142,6 +1142,13 @@ function buildTreeForGa(gaNum) {
     s.textContent = `.node-group:hover rect { filter: brightness(1.3); }`;
     document.head.appendChild(s);
   }
+  const selNode = nodes.find(n => n.ga === gaNum);
+  if (selNode) {
+    const container = document.getElementById('tree-container');
+    const scrollX = (selNode.x + ox) - container.clientWidth / 2 + NODE_W / 2;
+    const scrollY = (selNode.y + oy) - container.clientHeight / 2 + NODE_H / 2;
+    container.scrollTo({ left: scrollX, top: scrollY, behavior: 'smooth' });
+  }
 }
 
 // read all filter inputs and rerender the results grid
